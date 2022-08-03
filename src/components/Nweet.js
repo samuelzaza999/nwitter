@@ -1,0 +1,74 @@
+import { dbService, storageService } from "fBase";
+import { deleteDoc, doc, updateDoc } from "firebase/firestore";
+import { deleteObject, ref } from "firebase/storage";
+import React, { useState } from "react";
+
+export default function Nweet({ nweetObj, isOwner }) {
+  const [editing, setEditing] = useState(false); // 수정창 유무
+  const [newNweet, setNewNweet] = useState(nweetObj.text); // text 업데이트
+  let nweetTextRef = doc(dbService, "nweets", `${nweetObj.id}`); // nweet.id 위치
+  let imageUrl = ref(storageService, nweetObj.attachmentUrl); // 올린 이미지의 url 받기
+
+  const onDeleteClick = async () => {
+    const ok = window.confirm("삭제하시겠습니다?");
+    if (ok) {
+      try {
+        await deleteDoc(nweetTextRef);
+        if (nweetObj.attachmentUrl !== "") {
+          await deleteObject(imageUrl);
+        }
+      } catch (e) {
+        window.alert("삭제 실패");
+      }
+    }
+  };
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    await updateDoc(nweetTextRef, {
+      text: newNweet,
+    });
+    setEditing(false);
+  };
+  const onChange = (e) => {
+    const {
+      target: { value },
+    } = e;
+    setNewNweet(value);
+  };
+  const toggleEditing = () => setEditing((prev) => !prev);
+
+  return (
+    <div>
+      {editing ? (
+        <>
+          <form onSubmit={onSubmit}>
+            <input
+              type="text"
+              placeholder="Edit"
+              value={newNweet}
+              onChange={onChange}
+              required
+            />
+            <input type="submit" value="Update" />
+          </form>
+          <button onClick={toggleEditing}>Cancel</button>
+        </>
+      ) : (
+        <>
+          <h4>{nweetObj.text}</h4> {/** addDoc에서 이름을 nweet으로 줬다 */}
+          {nweetObj.attachmentUrl && (
+            // eslint-disable-next-line jsx-a11y/alt-text
+            <img src={nweetObj.attachmentUrl} width="50px" height="50px" />
+          )}{" "}
+          {/** nweetObj 안에 attachmentUrl 존재 */}
+          {isOwner && (
+            <>
+              <button onClick={onDeleteClick}>Delete</button>
+              <button onClick={toggleEditing}>Edit</button>
+            </>
+          )}
+        </>
+      )}
+    </div>
+  );
+}
