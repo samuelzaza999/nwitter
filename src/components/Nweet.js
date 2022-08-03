@@ -2,6 +2,8 @@ import { dbService, storageService } from "fBase";
 import { deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { deleteObject, ref } from "firebase/storage";
 import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 
 export default function Nweet({ nweetObj, isOwner }) {
   const [editing, setEditing] = useState(false); // 수정창 유무
@@ -38,10 +40,10 @@ export default function Nweet({ nweetObj, isOwner }) {
   const toggleEditing = () => setEditing((prev) => !prev);
 
   return (
-    <div>
+    <div className="nweet">
       {editing ? (
         <>
-          <form onSubmit={onSubmit}>
+          <form onSubmit={onSubmit} className="container nweetEdit">
             <input
               type="text"
               placeholder="Edit"
@@ -49,23 +51,26 @@ export default function Nweet({ nweetObj, isOwner }) {
               onChange={onChange}
               required
             />
-            <input type="submit" value="Update" />
+            <input type="submit" value="Update" className="formBtn" />
           </form>
-          <button onClick={toggleEditing}>Cancel</button>
+          <span onClick={toggleEditing} className="formBtn cancelBtn">
+            Cancel
+          </span>
         </>
       ) : (
         <>
           <h4>{nweetObj.text}</h4> {/** addDoc에서 이름을 nweet으로 줬다 */}
-          {nweetObj.attachmentUrl && (
-            // eslint-disable-next-line jsx-a11y/alt-text
-            <img src={nweetObj.attachmentUrl} width="50px" height="50px" />
-          )}{" "}
+          {nweetObj.attachmentUrl && <img src={nweetObj.attachmentUrl} />}
           {/** nweetObj 안에 attachmentUrl 존재 */}
           {isOwner && (
-            <>
-              <button onClick={onDeleteClick}>Delete</button>
-              <button onClick={toggleEditing}>Edit</button>
-            </>
+            <div class="nweet__actions">
+              <span onClick={onDeleteClick}>
+                <FontAwesomeIcon icon={faTrash} />
+              </span>
+              <span onClick={toggleEditing}>
+                <FontAwesomeIcon icon={faPencilAlt} />
+              </span>
+            </div>
           )}
         </>
       )}

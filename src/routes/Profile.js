@@ -45,18 +45,29 @@ export default function Profile({ userObj, refreshUser }) {
   }, []);
 
   return (
-    <>
-      <form onSubmit={onSubmit}>
+    <div className="container">
+      <form onSubmit={onSubmit} className="profileForm">
         <input
           onChange={onChange}
           type="text"
           placeholder="Display Name"
           value={newDisplayName}
+          autoFocus
+          className="formInput"
         />
-        <input type="submit" value="Update Profile" />
+        <input
+          type="submit"
+          value="Update Profile"
+          className="formBtn"
+          style={{
+            marginTop: 10,
+          }}
+        />
       </form>
-      <button onClick={onLogoutClick}>Logout</button>
-    </>
+      <span className="formBtn cancelBtn logOut" onClick={onLogoutClick}>
+        Log Out
+      </span>
+    </div>
   );
 }
 

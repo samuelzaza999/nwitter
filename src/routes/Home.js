@@ -111,7 +111,7 @@ export default function Home({ userObj }) {
   console.log(nweets);
 
   return (
-    <div>
+    <div className="container">
       {/* <form onSubmit={onSubmit}>
         <input
           type="text"
@@ -135,7 +135,7 @@ export default function Home({ userObj }) {
         )}
       </form> */}
       <NweetFactory userObj={userObj} />
-      <div>
+      <div style={{ marginTop: 30 }}>
         {nweets.map((nweet) => (
           // <div key={nweet.id}>
           //   <h4>{nweet.text}</h4> {/** addDoc에서 이름을 nweet으로 줬다 */}
