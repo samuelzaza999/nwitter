@@ -8,8 +8,8 @@ import {
 } from "firebase/firestore";
 import { dbService, storageService } from "fBase";
 import Nweet from "components/Nweet";
-import { getDownloadURL, ref, uploadString } from "@firebase/storage"; // 레퍼런스를 통한 파일 업/다운로드와 삭제 등
-import { v4 as uuidv4 } from "uuid"; // 랜덤 id 생성
+// import { getDownloadURL, ref, uploadString } from "@firebase/storage"; // 레퍼런스를 통한 파일 업/다운로드와 삭제 등
+// import { v4 as uuidv4 } from "uuid"; // 랜덤 id 생성
 import NweetFactory from "components/NweetFactory";
 
 // 일단 기능을 만든 뒤에 코드를 정리하기

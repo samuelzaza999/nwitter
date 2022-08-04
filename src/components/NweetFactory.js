@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import { v4 as uuidv4 } from "uuid";
 import { dbService, storageService } from "fBase";
 import { addDoc, collection } from "firebase/firestore";

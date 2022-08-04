@@ -135,6 +135,9 @@ export default function Auth() {
   //   }
   // };
 
+  // 파이어베이스 설정에서 깃허브 도메인을 설정해야 외부 사이트 인증 가능
+  // https://console.cloud.google.com/apis/credentials
+  // 브라우저 키: 여기에서 설정한 몇 개의 url만 나의 API 키 사용 가능
   return (
     <div className="authContainer">
       <FontAwesomeIcon
