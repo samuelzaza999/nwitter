@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "https://samuelzaza999.github.io/nwitter/static/css/main.ff37f1a6.css",
-    "main.js": "https://samuelzaza999.github.io/nwitter/static/js/main.a2355aad.js",
+    "main.js": "https://samuelzaza999.github.io/nwitter/static/js/main.c44d8ae6.js",
     "index.html": "https://samuelzaza999.github.io/nwitter/index.html",
     "main.ff37f1a6.css.map": "https://samuelzaza999.github.io/nwitter/static/css/main.ff37f1a6.css.map",
-    "main.a2355aad.js.map": "https://samuelzaza999.github.io/nwitter/static/js/main.a2355aad.js.map"
+    "main.c44d8ae6.js.map": "https://samuelzaza999.github.io/nwitter/static/js/main.c44d8ae6.js.map"
   },
   "entrypoints": [
     "static/css/main.ff37f1a6.css",
-    "static/js/main.a2355aad.js"
+    "static/js/main.c44d8ae6.js"
   ]
 }
